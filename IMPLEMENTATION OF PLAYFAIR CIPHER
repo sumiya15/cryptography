@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+char matrix[5][5];
+
+void generateMatrix(char key[]) {
+    int used[26] = {0}, i, j, k = 0;
+    for(i = 0; key[i] != '\0'; i++) {
+        char ch = key[i];
+        if(ch == 'J') ch = 'I';
+        if(ch >= 'a' && ch <= 'z') ch -= 32; // uppercase
+        if(!used[ch - 'A']) {
+            matrix[k/5][k%5] = ch;
+            used[ch - 'A'] = 1;
+            k++;
+        }
+    }
+    for(ch = 'A'; ch <= 'Z'; ch++) {
+        if(ch != 'J' && !used[ch - 'A']) {
+            matrix[k/5][k%5] = ch;
+            k++;
+        }
+    }
+}
+
+void printMatrix() {
+    for(int i=0;i<5;i++){
+        for(int j=0;j<5;j++)
+            printf("%c ", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+int main() {
+    char key[25];
+    printf("Enter keyword (A-Z): ");
+    gets(key);
+    generateMatrix(key);
+    printf("Playfair Matrix:\n");
+    printMatrix();
+    printf("Encryption function is not included for simplicity.\n");
+    return 0;
+}
