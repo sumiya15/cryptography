@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[100], key[100];
+    printf("Enter plaintext: ");
+    gets(text);
+    printf("Enter keyword: ");
+    gets(key);
+
+    int textLen = strlen(text), keyLen = strlen(key);
+    for(int i = 0, j = 0; i < textLen; i++) {
+        char ch = text[i];
+        if(ch >= 'A' && ch <= 'Z') {
+            text[i] = ((ch - 'A') + (key[j % keyLen] - 'A')) % 26 + 'A';
+            j++;
+        } else if(ch >= 'a' && ch <= 'z') {
+            text[i] = ((ch - 'a') + (key[j % keyLen] - 'a')) % 26 + 'a';
+            j++;
+        }
+    }
+
+    printf("Ciphertext: %s\n", text);
+    return 0;
+}
