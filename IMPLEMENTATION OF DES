@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+void encrypt(char *input, char *key, char *output) 
+{
+    for (int i = 0; i < strlen(input); i++) {
+        output[i] = input[i] ^ key[i % strlen(key)];
+    }
+    output[strlen(input)] = '\0';
+}
+void decrypt(char *input, char *key, char *output) {
+    for (int i = 0; i < strlen(input); i++) {
+        output[i] = input[i] ^ key[i % strlen(key)];
+    }
+    output[strlen(input)] = '\0';
+}
+int main() {
+    char input[100], key[100], encrypted[100], decrypted[100];
+    printf("Enter text to encrypt: ");
+    gets(input);
+    printf("Enter key: ");
+    gets(key);
+    encrypt(input, key, encrypted);
+    printf("\nEncrypted text (in hex): ");
+    for (int i = 0; i < strlen(input); i++)
+        printf("%02X ", (unsigned char)encrypted[i]);
+    decrypt(encrypted, key, decrypted);
+    printf("\nDecrypted text: %s\n", decrypted);
+    return 0;
+}
