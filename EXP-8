@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double p, g, a, b, A, B, keyA, keyB;
+    printf("Enter prime number (p): ");
+    scanf("%lf", &p);
+    printf("Enter primitive root of p (g): ");
+    scanf("%lf", &g);
+    printf("Enter private key for Alice (a): ");
+    scanf("%lf", &a);
+    printf("Enter private key for Bob (b): ");
+    scanf("%lf", &b);
+    A = fmod(pow(g, a), p); 
+    B = fmod(pow(g, b), p); 
+    keyA = fmod(pow(B, a), p);
+    keyB = fmod(pow(A, b), p);
+
+    printf("\nPublic key of Alice (A): %.0lf", A);
+    printf("\nPublic key of Bob (B): %.0lf", B);
+    printf("\n\nShared secret key for Alice: %.0lf", keyA);
+    printf("\nShared secret key for Bob: %.0lf\n", keyB);
+
+    if (keyA == keyB)
+        printf("\n? Both keys are same. Key exchange successful!\n");
+    else
+        printf("\n? Keys are not same. Check inputs.\n");
+
+    return 0;
+}
