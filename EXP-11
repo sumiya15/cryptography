@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void createMatrix(char key[], char matrix[5][5]) {
+    int used[26] = {0}, k = 0;
+    for (int i = 0; key[i]; i++) {
+        char c = toupper(key[i]);
+        if (c == 'J') c = 'I';
+        if (!used[c - 'A']) {
+            matrix[k / 5][k % 5] = c;
+            used[c - 'A'] = 1;
+            k++;
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        if (i + 'A' == 'J') continue;
+        if (!used[i]) matrix[k / 5][k % 5] = 'A' + i, k++;
+    }
+}
+
+int main() {
+    char key[] = "MONARCHY";
+    char matrix[5][5];
+    createMatrix(key, matrix);
+    printf("Playfair Key Matrix:\n");
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++)
+            printf("%c ", matrix[i][j]);
+        printf("\n");
+    }
+    return 0;
+}
