@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main() {
+    char msg[] = "HELLO";
+    int key = 3;
+    for (int i = 0; msg[i]; i++)
+        if (msg[i] != ' ')
+            msg[i] = ((msg[i] - 'A' + key) % 26) + 'A';
+    printf("Encrypted message: %s\n", msg);
+    return 0;
+}
