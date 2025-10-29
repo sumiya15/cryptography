@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main() {
+    int key[2][2] = {{3, 3}, {2, 5}};
+    char text[3] = "HI";
+    int a = text[0]-'A', b = text[1]-'A';
+    int c1 = (key[0][0]*a + key[0][1]*b) % 26;
+    int c2 = (key[1][0]*a + key[1][1]*b) % 26;
+    printf("Encrypted: %c%c\n", c1+'A', c2+'A');
+    return 0;
+}
