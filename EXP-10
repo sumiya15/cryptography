@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char msg[100];
+    unsigned long hash = 5381;
+    printf("Enter message: ");
+    scanf("%[^\n]", msg);
+
+    for (int i = 0; i < strlen(msg); i++)
+        hash = ((hash << 5) + hash) + msg[i]; 
+    printf("\nSimulated SHA-1 hash: %08lx\n", hash);
+    return 0;
+}
