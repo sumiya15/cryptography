@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main() {
+    int pt[3] = {10,20,30}, iv=5, key=3, ct[3];
+    for(int i=0;i<3;i++){
+        int temp = pt[i]^iv;
+        ct[i] = (temp+key)%256;
+        iv = ct[i];
+    }
+    printf("CBC Ciphertext: ");
+    for(int i=0;i<3;i++) printf("%d ", ct[i]);
+    return 0;
+}
