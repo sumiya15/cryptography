@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char msg[] = "HELLO";
+    int freq[26] = {0};
+    for (int i = 0; msg[i]; i++)
+        freq[msg[i]-'A']++;
+    for (int i = 0; i < 26; i++)
+        if (freq[i]) printf("%c : %d\n", 'A'+i, freq[i]);
+    return 0;
+}
