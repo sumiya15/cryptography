@@ -1,0 +1,17 @@
+#include <stdio.h>
+int f(int r, int k){ return (r ^ k) & 0xF; }
+
+int main() {
+    int pt = 0xA;  // 4-bit plaintext
+    int key1 = 0x6, key2 = 0x3; // two 4-bit subkeys
+    int l = pt >> 2, r = pt & 0x3;
+    int temp = l;
+    l = r;
+    r = temp ^ f(r, key1);
+    temp = l;
+    l = r;
+    r = temp ^ f(r, key2);
+    int ct = (l << 2) | r;
+    printf("Ciphertext (4-bit): %X\n", ct);
+    return 0;
+}
