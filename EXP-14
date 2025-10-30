@@ -1,0 +1,8 @@
+#include <stdio.h>
+int main() {
+    char text[] = "HELLO", key[] = "XMCKL";
+    for (int i = 0; text[i]; i++)
+        text[i] = ((text[i]-'A') + (key[i]-'A')) % 26 + 'A';
+    printf("Encrypted: %s\n", text);
+    return 0;
+}
